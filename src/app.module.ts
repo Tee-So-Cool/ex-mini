@@ -1,9 +1,8 @@
-import { ProductController } from './product/product.controller';
-import { ProductService } from './product/products.service';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { LoggerMiddleware } from './middleware/logger.middleware';
 import { DatabaseModule } from './database/database.module';
-
+import { LoggerMiddleware } from './middleware/logger.middleware';
+import { ProductsController } from './product/products.controller';
+import { ProductsService } from './product/products.service';
 
 @Module({
   imports: [
@@ -12,8 +11,8 @@ import { DatabaseModule } from './database/database.module';
       port: 5432,
     }),
   ],
-  controllers: [ProductController],
-  providers: [ProductService],
+  controllers: [ProductsController],
+  providers: [ProductsService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
